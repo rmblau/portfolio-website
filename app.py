@@ -1,3 +1,4 @@
+from re import template
 from starlette.applications import Starlette
 from starlette.staticfiles import StaticFiles
 from starlette.responses import HTMLResponse
@@ -14,6 +15,20 @@ app.mount('/static', StaticFiles(directory='statics'), name='static')
 @app.route('/')
 async def homepage(request):
     template = "index.html"
+    context = {"request": request}
+    return templates.TemplateResponse(template, context)
+
+
+@app.route('/about.html')
+async def about(request):
+    template = "about.html"
+    context = {"request": request}
+    return templates.TemplateResponse(template, context)
+
+
+@app.route('/discord.html')
+async def discord_bot(request):
+    template = "discord.html"
     context = {"request": request}
     return templates.TemplateResponse(template, context)
 
@@ -44,7 +59,3 @@ async def server_error(request, exc):
     template = "500.html"
     context = {"request": request}
     return templates.TemplateResponse(template, context, status_code=500)
-
-
-if __name__ == "__main__":
-    uvicorn.run(app, host='0.0.0.0', port=8000)
