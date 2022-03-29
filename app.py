@@ -19,6 +19,13 @@ async def homepage(request):
     return templates.TemplateResponse(template, context)
 
 
+@app.route('/test.html')
+async def homepage(request):
+    template = "test.html"
+    context = {"request": request}
+    return templates.TemplateResponse(template, context)
+
+
 @app.route('/about.html')
 async def about(request):
     template = "about.html"
