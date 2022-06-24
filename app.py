@@ -12,6 +12,7 @@ routes = [
     Route("/", views.homepage, name="home"),
     Route("/resume.html", views.resume, name="resume"),
     Route("/discord.html", views.discord_bot, name="discord"),
+    Route("/about.html", views.about, name="about"),
     Mount("/static", static, name="static"),
 ]
 app = Starlette(debug=True, routes=routes,
